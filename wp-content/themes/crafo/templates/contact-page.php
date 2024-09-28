@@ -74,7 +74,26 @@ require_once get_template_directory() . '/templates/common-functions.php';
     <div class="container-fluid h-100 overlap-gap-section">
         <div class="row justify-content-center h-100">
             <div class="col-12 p-0">
-                <div id="map" class="map h-500px md-h-400px sm-h-350px" data-map-options='{ "lat": -37.805688, "lng": 144.962312, "style": "Silver", "marker": { "type": "HTML", "color": "#005153" }, "popup": { "defaultOpen": true, "html": "<div class=infowindow><strong class=\"mb-3 d-inline-block alt-font\">Crafto Accounting</strong><p class=\"alt-font\">16122 Collins street, Melbourne, Australia</p></div><div class=\"google-maps-link alt-font\"> <a aria-label=\"View larger map\" target=\"_blank\" jstcache=\"31\" href=\"https://maps.google.com/maps?ll=-37.805688,144.962312&amp;z=17&amp;t=m&amp;hl=en-US&amp;gl=IN&amp;mapclient=embed&amp;cid=13153204942596594449\" jsaction=\"mouseup:placeCard.largerMap\">VIEW LARGER MAP</a></div>" } }'></div>
+                <?php
+                // Retrieve the customizer settings
+                $map_lat = get_theme_mod('contact_map_lat', '-37.805688'); // Default lat if not set
+                $map_lng = get_theme_mod('contact_map_long', '144.962312'); // Default lng if not set
+                $map_address = get_theme_mod('contact_map_address', '16122 Collins street, Melbourne, Australia');
+                $map_cid = get_theme_mod('contact_map_cid', '13153204942596594449');
+                ?>
+
+                <div id="map" class="map h-500px md-h-400px sm-h-350px"
+                     data-map-options='{
+                         "lat": <?php echo esc_attr($map_lat); ?>,
+                         "lng": <?php echo esc_attr($map_lng); ?>,
+                         "style": "Silver",
+                         "marker": { "type": "HTML", "color": "#005153" },
+                         "popup": {
+                             "defaultOpen": true,
+                             "html": "<div class=infowindow><strong class=\"mb-3 d-inline-block alt-font\">Crafto Accounting</strong><p class=\"alt-font\"><?php echo esc_js($map_address); ?></p></div><div class=\"google-maps-link alt-font\"> <a aria-label=\"View larger map\" target=\"_blank\" href=\"https://maps.google.com/maps?ll=<?php echo esc_attr($map_lat); ?>,<?php echo esc_attr($map_lng); ?>&amp;z=17&amp;t=m&amp;hl=en-US&amp;gl=IN&amp;mapclient=embed&amp;cid=<?php echo esc_attr($map_cid); ?>\">VIEW LARGER MAP</a></div>"
+                         }
+                     }'>
+                </div>
             </div>
         </div>
     </div>

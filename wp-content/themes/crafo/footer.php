@@ -5,6 +5,9 @@
     
 ?>
 
+<?php if (!is_page('home')) { ?>
+<section class="bg-extra-medium-gray pt-0 pb-0 footer-blank-section"></section>
+<?php } ?>
 <footer class="footer-light bg-white pt-0 pb-2 lg-pb-35px">
     <!-- start footer -->
     <div class="footer-top pt-50px pb-50px sm-pt-35px sm-pb-35px border-bottom border-1 border-color-transparent-white-light">
@@ -32,7 +35,7 @@
     <div class="container">
         <div class="row justify-content-center fs-17 fw-300 mt-5 mb-4 md-mt-45px md-mb-45px xs-mt-35px xs-mb-35px">
             <!-- start footer column -->
-            <div class="col-6 col-lg-3 order-sm-1 md-mb-40px xs-mb-30px last-paragraph-no-margin">
+            <div class="col-6 col-lg-4 col-sm-6 order-sm-1 md-mb-40px xs-mb-30px last-paragraph-no-margin">
                 <a href="demo-accounting.html" class="footer-logo mb-15px d-inline-block"><img src="<?php echo $footer_logo; ?>" data-at2x="<?php echo $footer_logo; ?>" alt=""></a>
                 <p class="w-85 xl-w-95 sm-w-100">
                     <?php if (get_theme_mod('footer_description')) : ?>
@@ -69,7 +72,7 @@
             </div>
             <!-- end footer column -->
             <!-- start footer column -->
-            <div class="col-6 col-lg-2 col-sm-4 xs-mb-30px order-sm-3 order-lg-2">
+            <div class="col-6 col-lg-2 col-sm-6 xs-mb-30px order-sm-3 order-lg-2">
                 <span class="fs-18 fw-400 d-block text-dark-gray mb-5px">About</span>
                 <?php
                 wp_nav_menu(array(
@@ -83,7 +86,7 @@
             <!-- end footer column -->
 
             <!-- start footer column -->
-            <div class="col-6 col-lg-2 col-sm-4 xs-mb-30px order-sm-4 order-lg-3">
+            <div class="col-6 col-lg-3 col-sm-6 xs-mb-30px order-sm-4 order-lg-3">
                 <span class="fs-18 fw-400 d-block text-dark-gray mb-5px">Services</span>
                 <?php
                 wp_nav_menu(array(
@@ -96,10 +99,10 @@
             </div>
             <!-- end footer column -->
             <!-- start footer column -->
-            <div class="col-6 col-lg-2 col-sm-4 xs-mb-30px order-sm-5 order-lg-4">
+            <div class="col-6 col-lg-3 col-sm-6 xs-mb-30px order-sm-5 order-lg-4">
                 <span class="fs-18 fw-400 d-block text-dark-gray mb-5px">Get in touch</span>
                 <?php if (get_theme_mod('support_email')) : ?>
-                    <p class="mb-5px">Need support?</p>
+                    <p class="mb-5px">Ndeed support?</p>
                     <a href="mailto:<?php echo get_theme_mod('support_email'); ?>" class="text-dark-gray lh-16 d-block mb-15px"><?php echo get_theme_mod('support_email'); ?></a>
                 <?php endif; ?>
                 
@@ -110,22 +113,7 @@
 
                 
             </div>
-            <!-- end footer column -->
-            <!-- start footer column -->
-            <div class="col-lg-3 col-sm-6 md-mb-40px xs-mb-0 order-sm-2 order-lg-5">
-                <span class="fs-18 fw-400 d-block text-dark-gray mb-5px">Subscribe to newsletter</span>
-                <p class="mb-20px">Enter your email and we contact you!</p>
-                <div class="d-inline-block w-100 newsletter-style-02 position-relative"> 
-                    <form action="<?php echo admin_url('admin-ajax.php'); ?>" method="post" class="position-relative"> 
-                        <input type="hidden" name="action" value="handle_newsletter_form">
-                        <input class="border-color-transparent-white-dark bg-transparent border-radius-4px w-100 form-control lg-ps-15px required" type="email" name="email" placeholder="Enter your email" />
-                        <input type="hidden" name="redirect" value="">
-                        <button class="btn pe-20px submit" aria-label="submit"><i class="bi bi-envelope icon-small text-dark-gray"></i></button>
-                        <div class="form-results border-radius-4px pt-5px pb-5px ps-15px pe-15px fs-14 lh-22 mt-10px w-100 text-center position-absolute d-none"></div>
-                    </form>
-                </div>
-            </div>
-            <!-- end footer column -->                       
+            <!-- end footer column -->                
         </div> 
         <div class="row align-items-center fs-16 fw-300">
             <!-- start copyright -->

@@ -19,10 +19,10 @@ get_header(); ?>
     <div class="container">
         <div class="row">
             <div class="col-lg-4 pe-5 order-2 order-lg-1 lg-pe-3 md-pe-15px" data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'>
-                <div class="bg-theme-blue-base border-radius-6px ps-35px pb-25px pt-25px lg-ps-25px mb-25px">
+                <div class="bg-theme-blue border-radius-6px ps-35px pb-25px pt-25px lg-ps-25px mb-25px">
                     <div class="feature-box feature-box-left-icon-middle">
-                        <div class="feature-box-icon feature-box-icon-rounded w-65px h-65px me-20px lg-me-15px rounded-circle bg-theme-blue rounded-box">
-                            <i class="bi bi-telephone-outbound icon-extra-medium text-white"></i>
+                        <div class="bg-green feature-box-icon feature-box-icon-rounded w-65px h-65px me-20px lg-me-15px rounded-circle rounded-box">
+                            <i class="bg-green bi bi-whatsapp icon-extra-medium text-white"></i>
                         </div>
                         <div class="feature-box-content last-paragraph-no-margin">
                             <span class="fs-19 lh-22 mb-5px d-block text-white opacity-6 fw-300">Customer care?</span>
@@ -54,7 +54,7 @@ get_header(); ?>
                         <!-- end contact form -->  
                     </div>
                 </div>
-                <div class="bg-theme-blue-base border-radius-top-left-6px border-radius-top-right-6px pb-25px pt-25px">
+                <div class="bg-theme-blue border-radius-top-left-6px border-radius-top-right-6px pb-25px pt-25px">
                     <div class="feature-box-content last-paragraph-no-margin">
                         <span class="fs-19 d-block text-white fw-600 text-center">More Services</span>
                     </div>
@@ -104,7 +104,7 @@ get_header(); ?>
                             <span class="fs-24 alt-font text-dark-gray ls-minus-05px fw-700 mb-10px d-block"><?php echo get_post_meta(get_the_ID(), '_service_title4', true); ?></span>
                             <p class="w-95 lg-w-100"><?php echo get_post_meta(get_the_ID(), '_service_description4', true); ?></p>
                         </div>
-                        <div class="bg-theme-blue-base p-15px text-center">
+                        <div class="bg-theme-blue p-15px text-center">
                             <a href="<?php echo home_url(); ?>/contact" class="text-white text-dark-gray-hover fw-600"><i class="feather icon-feather-mail me-10px"></i>Talk with our team</a>
                         </div>
                     </div>

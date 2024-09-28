@@ -53,7 +53,8 @@
     --medium-gray: #7c898d;
     --solitude-blue: #f4f7f9;
     --theme-blue-base-color: #076c9a;
-    --theme-blue-color: #0799DC;
+/*    --theme-blue-color: #0799DC;*/
+    --theme-blue-color: #0197db;
 } 
 /* reset */
 body {

@@ -77,8 +77,10 @@ Table of contents
   --camarone: #20642b;
   --seal-brown: #0e0708;
   --Wasabi: #8ea63a;
-  --theme-blue-color: #0799DC;
+/*  --theme-blue-color: #0799DC;*/
+  --theme-blue-color: #0197db;
   --theme-blue-base-color: #076c9a;
+  --theme-kan-blue-color: #0197db;
 }
 /* ===================================
     03. Reset
@@ -582,6 +584,12 @@ b, strong {
   color: var(--base-color);
 }
 .text-blue-base-color {
+  color: var(--theme-blue-base-color);
+}
+.text-kan-blue-color {
+  color: var(--theme-kan-blue-color);
+}
+.text-kan-blue-color:hover {
   color: var(--theme-blue-base-color);
 }
 .text-black, .btn-link.text-black, a.text-black-hover:hover {
@@ -3309,8 +3317,14 @@ input:focus, select:focus, textarea:focus, .form-control:focus {
 .bg-theme-blue {
   background-color: var(--theme-blue-color);
 }
+.bg-theme-blue:hover {
+  background-color: var(--theme-blue-base-color);
+}
 .bg-theme-blue-base {
   background-color: var(--theme-blue-base-color);
+}
+.bg-theme-blue-kan {
+  background-color: var(--theme-kan-blue-color);
 }
 /* Gradient background color */
 .bg-gradient-light-pink-light-orange {
@@ -10517,11 +10531,17 @@ blockquote footer {
   color: var(--white);
 }
 .btn.btn-theme-blue-base:hover, .btn.btn-theme-blue-base:active {
- /* background-color: transparent !important;
+  background-color: var(--theme-blue-base-color) !important;
   border-color: var(--theme-blue-base-color) !important;
-  color: #000000 !important;*/
-  background-color: var(--theme-blue-color) !important;
-  border-color: var(--theme-blue-color) !important;
+  color: var(--white) !important;
+}
+.btn.btn-theme-blue-kan {
+  background-color: var(--theme-kan-blue-color);
+  color: var(--white);
+}
+.btn.btn-theme-blue-kan:hover, .btn.btn-theme-blue-kan:active {
+  background-color: var(--theme-blue-base-color) !important;
+  border-color: var(--theme-blue-base-color) !important;
   color: var(--white) !important;
 }
 .btn.btn-green {
@@ -10529,9 +10549,12 @@ blockquote footer {
   color: var(--white);
 }
 .btn.btn-green:hover, .btn.btn-green:active {
-  background-color: transparent !important;
+  /*background-color: transparent !important;
   border-color: var(--green) !important;
-  color: #000000 !important;
+  color: #000000 !important;*/
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+  color: #FFFFFF !important;
 }
 .btn.btn-double-border.btn-extra-large {
   padding: 0;
@@ -16539,7 +16562,7 @@ canvas {
 }
 .tab-style-08 ul .nav-item .nav-link.active, .tab-style-08 ul .nav-item .nav-link.show, .tab-style-08 ul .nav-item .nav-link:hover {
   border: 0;
-  color: var(--theme-blue-base-color);
+  color: var(--theme-blue-color);
 }
 .tab-style-08 ul .nav-item .nav-link.active .tab-border, .tab-style-08 ul .nav-item .nav-link.show .tab-border, .tab-style-08 ul .nav-item .nav-link:hover .tab-border {
   -wekit-transform: scaleX(1);
@@ -19380,6 +19403,10 @@ footer .footer-navbar .nav-item:last-child a {
   padding-bottom: 10px;
 }
 
+.footer-blank-section{
+  height: 2px !important;
+}
+
 .full-width-row {
     width: 100vw; /* Force the row to take the full width of the viewport */
     margin-left: calc(-50vw + 50%); /* Center the full-width row */
@@ -19422,3 +19449,124 @@ footer .footer-navbar .nav-item:last-child a {
         margin-top: 5px;
     }
 }
+
+/* Preloader Styling */
+#preloader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: #fff; /* Preloader background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preloader-content {
+  text-align: center;
+}
+
+#preloader-logo {
+  max-width: 150px;
+  margin-bottom: 15px;
+}
+
+#preloader-slogan {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Progress Bar */
+.progress-bar {
+  position: relative;
+  width: 100%;
+  height: 10px; /* Adjust height as needed */
+  background-color: var(--very-light-gray); /* Background color of the progress bar */
+  overflow: hidden;
+}
+
+.progress-bar::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  background-color: var(--theme-blue-color); /* Color of the progress indicator */
+  width: 0; /* Start with 0 width */
+  animation: progress 3s forwards; /* Animate over 3 seconds */
+}
+
+@keyframes progress {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Hide preloader when page is loaded */
+body.loaded #preloader {
+  display: none;
+}
+/* End */
+
+
+/* Mobile nav slider */
+/* Mobile nav slider */
+@media (max-width: 991px) {
+    [data-mobile-nav-style=modern] .navbar-modern-inner .navbar-nav .dropdown.dropdown-with-icon-style02 .dropdown-menu li img {
+       width: 35px;
+       margin-right: 10px;
+    }
+}
+
+ /* Ensure the mobile logo is positioned in the top right inside the mobile nav */
+.mobile-nav-logo {
+    position: relative;
+}
+
+
+.mobile-logo-top-center {
+    position: fixed;
+    top: 40px;
+    left: 50%;  /* Center horizontally */
+    transform: translateX(-50%);  /* Shift the logo back by 50% of its width to center */
+    width: 180px;  /* Adjust the width as per your needs */
+    z-index: 1000;  /* Ensures the logo stays above other content */
+}
+
+@media (max-width: 991px) {
+    /* Center logo and slogan horizontally */
+    .mobile-logo-top-center,
+    .mobile-slogan-top-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Stack content vertically */
+        width: 100%; /* Take full width */
+    }
+
+    /* Mobile logo styling */
+    .mobile-logo-top-center img {
+        display: block;
+        margin: 0 auto;
+        width: 150px; /* Adjust size as needed */
+    }
+
+    /* Slogan styling */
+    .mobile-slogan {
+        font-size: 16px;
+        color: #ffffff;
+        margin-top: 10px;
+        text-align: center;
+        position: fixed;
+        top: 70px; /* Adjust as needed based on your logo height */
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%); /* Offset the left position */
+    }
+}
+
+/*End Mobile nav slider*/
+
+/* for submit button loading css */
+.submit .spinner-border {
+    margin-left: 10px; /* Add spacing between the button text and spinner */
+}
+/* end for submit button loading css */

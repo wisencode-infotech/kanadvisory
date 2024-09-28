@@ -94,7 +94,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
                 <div class="feature-box hover-box dark-hover border-end xs-border-end-0 border-color-extra-medium-gray border-color-transparent-on-hover lg-border-bottom last-paragraph-no-margin">
                     <div class="content-slide-up content-scale p-17 xxl-p-15 xl-p-10 xs-p-13">
                         <div class="feature-box-icon">
-                            <i class="<?php echo get_theme_mod('process_section2_icon1'); ?> icon-extra-large text-blue-base-color mb-20px justify-content-center"></i>
+                            <i class="<?php echo get_theme_mod('process_section2_icon1'); ?> icon-extra-large text-kan-blue-color mb-20px justify-content-center"></i>
                         </div>
                         <div class="feature-box-content">
                             <span class="d-inline-block alt-font text-dark-gray fs-20 fw-500 mb-5px"><?php echo get_theme_mod('process_section2_name1'); ?></span>
@@ -110,7 +110,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
                 <div class="feature-box hover-box dark-hover h-100 border-end sm-border-end-0 border-color-extra-medium-gray border-color-transparent-on-hover lg-border-bottom last-paragraph-no-margin">
                     <div class="content-slide-up content-scale p-17 xxl-p-15 xl-p-10 xs-p-13">
                         <div class="feature-box-icon">
-                            <i class="<?php echo get_theme_mod('process_section2_icon2'); ?> icon-extra-large text-blue-base-color mb-20px justify-content-center"></i>
+                            <i class="<?php echo get_theme_mod('process_section2_icon2'); ?> icon-extra-large text-kan-blue-color mb-20px justify-content-center"></i>
                         </div>
                         <div class="feature-box-content">
                             <span class="d-inline-block alt-font text-dark-gray fs-20 fw-500 mb-5px"><?php echo get_theme_mod('process_section2_name2'); ?></span>
@@ -126,7 +126,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
                 <div class="feature-box hover-box dark-hover h-100 border-end xs-border-end-0 border-color-extra-medium-gray border-color-transparent-on-hover lg-border-bottom last-paragraph-no-margin">
                     <div class="content-slide-up content-scale p-17 xxl-p-15 xl-p-10 xs-p-13">
                         <div class="feature-box-icon">
-                            <i class="<?php echo get_theme_mod('process_section2_icon3'); ?> icon-extra-large text-blue-base-color mb-20px justify-content-center"></i>
+                            <i class="<?php echo get_theme_mod('process_section2_icon3'); ?> icon-extra-large text-kan-blue-color mb-20px justify-content-center"></i>
                         </div>
                         <div class="feature-box-content">
                             <span class="d-inline-block alt-font text-dark-gray fs-20 fw-500 mb-5px"><?php echo get_theme_mod('process_section2_name3'); ?></span>
@@ -142,7 +142,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
                 <div class="feature-box hover-box dark-hover h-100 border-end sm-border-end-0 border-color-extra-medium-gray border-color-transparent-on-hover sm-border-bottom last-paragraph-no-margin">
                     <div class="content-slide-up content-scale p-17 xxl-p-15 xl-p-10 xs-p-13">
                         <div class="feature-box-icon">
-                            <i class="<?php echo get_theme_mod('process_section2_icon4'); ?> icon-extra-large text-blue-base-color mb-20px justify-content-center"></i>
+                            <i class="<?php echo get_theme_mod('process_section2_icon4'); ?> icon-extra-large text-kan-blue-color mb-20px justify-content-center"></i>
                         </div>
                         <div class="feature-box-content">
                             <span class="d-inline-block alt-font text-dark-gray fs-20 fw-500 mb-5px"><?php echo get_theme_mod('process_section2_name4'); ?></span>
@@ -158,7 +158,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
                 <div class="feature-box hover-box dark-hover h-100 border-end xs-border-end-0 border-color-extra-medium-gray border-color-transparent-on-hover xs-border-bottom last-paragraph-no-margin">
                     <div class="content-slide-up content-scale p-17 xxl-p-15 xl-p-10 xs-p-13">
                         <div class="feature-box-icon">
-                            <i class="<?php echo get_theme_mod('process_section2_icon5'); ?> icon-extra-large text-blue-base-color mb-20px justify-content-center"></i>
+                            <i class="<?php echo get_theme_mod('process_section2_icon5'); ?> icon-extra-large text-kan-blue-color mb-20px justify-content-center"></i>
                         </div>
                         <div class="feature-box-content">
                             <span class="d-inline-block alt-font text-dark-gray fs-20 fw-500 mb-5px"><?php echo get_theme_mod('process_section2_name5'); ?></span>
@@ -174,7 +174,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
                 <div class="feature-box hover-box dark-hover h-100 border-color-extra-medium-gray border-color-transparent-on-hover last-paragraph-no-margin">
                     <div class="content-slide-up content-scale p-17 xxl-p-15 xl-p-10 xs-p-13">
                         <div class="feature-box-icon">
-                            <i class="<?php echo get_theme_mod('process_section2_icon6'); ?> icon-extra-large text-blue-base-color mb-20px justify-content-center"></i>
+                            <i class="<?php echo get_theme_mod('process_section2_icon6'); ?> icon-extra-large text-kan-blue-color mb-20px justify-content-center"></i>
                         </div>
                         <div class="feature-box-content">
                             <span class="d-inline-block alt-font text-dark-gray fs-20 fw-500 mb-5px"><?php echo get_theme_mod('process_section2_name6'); ?></span>

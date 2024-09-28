@@ -108,14 +108,14 @@ require_once get_template_directory() . '/templates/common-functions.php';
                     </div>
                     <!-- end counter item -->
                 </div>
-                <a href="<?php echo home_url(); ?>/contact" class="btn btn-large btn-rounded with-rounded btn-white btn-round-edge btn-box-shadow">Let's discuss<span class="bg-theme-blue-base text-white"><i class="feather icon-feather-arrow-right icon-small"></i></span></a>
+                <a href="<?php echo home_url(); ?>/contact" class="btn btn-large btn-rounded with-rounded btn-white btn-round-edge btn-box-shadow">Let's discuss<span class="bg-theme-blue text-white"><i class="feather icon-feather-arrow-right icon-small"></i></span></a>
             </div> 
         </div> 
     </div>
 </section>  
 <!-- end section -->
 <!-- start section --> 
-<section class="p-0 bg-theme-blue-base">
+<section class="p-0 bg-theme-blue">
     <div class="container">
         <div class="row align-items-center justify-content-center g-0">
             <div class="col-auto d-flex align-items-center" data-anime='{ "translateY": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'>
@@ -169,7 +169,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
                 <!-- start map -->
                 <div class="outside-box-right-30 position-relative">
                     <img src="<?php echo get_theme_mod('_company_section4_image2'); ?>" alt="" />
-                    <div class="bg-theme-blue-base video-icon-box video-icon-medium feature-box-icon-rounded position-absolute top-100px left-100px mt-10 ms-15 w-40px h-40px rounded-circle d-flex align-items-center justify-content-center" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<span class=tooltip-title>Crafto - New York</span><p class=m-0>401 Broadway, 24th Floor, Orchard View,  New York</p>">
+                    <!-- <div class="bg-theme-blue-base video-icon-box video-icon-medium feature-box-icon-rounded position-absolute top-100px left-100px mt-10 ms-15 w-40px h-40px rounded-circle d-flex align-items-center justify-content-center" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<span class=tooltip-title>Crafto - New York</span><p class=m-0>401 Broadway, 24th Floor, Orchard View,  New York</p>">
                         <span>
                             <span class="video-icon"> 
                                 <span class="bg-theme-blue-base w-100 h-100 border-radius-100 text-center d-flex align-items-center justify-content-center">
@@ -181,8 +181,8 @@ require_once get_template_directory() . '/templates/common-functions.php';
                                 </span>
                             </span> 
                         </span>
-                    </div>
-                    <div class="bg-theme-blue-base video-icon-box video-icon-medium feature-box-icon-rounded position-absolute bottom-100px start-50 mb-10 ms-7 w-40px h-40px rounded-circle d-flex align-items-center justify-content-center" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<span class=tooltip-title>Crafto - Canada</span><p class=m-0>2839 lalemant view road, Niagara falls, Canada</p>">
+                    </div> -->
+                    <!-- <div class="bg-theme-blue-base video-icon-box video-icon-medium feature-box-icon-rounded position-absolute bottom-100px start-50 mb-10 ms-7 w-40px h-40px rounded-circle d-flex align-items-center justify-content-center" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<span class=tooltip-title>Crafto - Canada</span><p class=m-0>2839 lalemant view road, Niagara falls, Canada</p>">
                         <span>
                             <span class="video-icon">
                                 <span class="w-100 h-100 bg-theme-blue-base border-radius-100 d-flex align-items-center justify-content-center">
@@ -194,7 +194,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
                                 </span>
                             </span> 
                         </span>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- end map -->
             </div>

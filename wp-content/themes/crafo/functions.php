@@ -915,8 +915,8 @@ function crafto_theme_scripts() {
     wp_enqueue_script('main-scripts', get_template_directory_uri() . '/js/main.js', array(), false, true);
 
 
-    if (is_page('contact')) {  // Replace 'contact' with your page's slug, ID, or title
-        wp_enqueue_script('contact-page-scripts', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCA56KqSJ11nQUw_tXgXyNMiPmQeM7EaSA&callback=initMap', array(), false, true);
+    if (is_page('contact')) {
+        wp_enqueue_script('contact-page-scripts', 'https://maps.googleapis.com/maps/api/js?key='.get_theme_mod('map_api_key').'&callback=initMap', array(), false, true);
     }
 }
 add_action('wp_enqueue_scripts', 'crafto_theme_scripts');
@@ -2104,7 +2104,67 @@ function crafto_contact_page_settings( $wp_customize ) {
         'description' => __('Manage contact page content settings.', 'crafto'),
     ));
 
-    // Contact Title
+    // Map Api Key
+    $wp_customize->add_setting('map_api_key', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('map_api_key', array(
+        'label'    => __('Map Api Key', 'crafto'),
+        'section'  => 'contact_page_settings_section',
+        'settings' => 'map_api_key',
+        'type'     => 'text',
+    ));
+
+    // Latittude
+    $wp_customize->add_setting('contact_map_lat', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('contact_map_lat', array(
+        'label'    => __('Latittude', 'crafto'),
+        'section'  => 'contact_page_settings_section',
+        'settings' => 'contact_map_lat',
+        'type'     => 'text',
+    ));
+
+    // Longitude
+    $wp_customize->add_setting('contact_map_long', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('contact_map_long', array(
+        'label'    => __('Longitude', 'crafto'),
+        'section'  => 'contact_page_settings_section',
+        'settings' => 'contact_map_long',
+        'type'     => 'text',
+    ));
+
+    // Map Address
+    $wp_customize->add_setting('contact_map_address', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('contact_map_address', array(
+        'label'    => __('Map Address', 'crafto'),
+        'section'  => 'contact_page_settings_section',
+        'settings' => 'contact_map_address',
+        'type'     => 'text',
+    ));
+
+    // Google Maps CID
+    $wp_customize->add_setting('contact_map_cid', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('contact_map_cid', array(
+        'label'    => __('Google Maps CID', 'crafto'),
+        'section'  => 'contact_page_settings_section',
+        'settings' => 'contact_map_cid',
+        'type'     => 'text',
+    ));
+
+     // Contact Title
     $wp_customize->add_setting('contact_title', array(
         'default'           => '',
         'sanitize_callback' => 'sanitize_text_field',
@@ -3003,143 +3063,176 @@ function crafto_process_page_settings($wp_customize) {
 add_action('customize_register', 'crafto_process_page_settings');
 
 
+function theme_preloader_scripts() {
+    wp_enqueue_script( 'theme-preloader', get_template_directory_uri() . '/js/preloader.js', array(), null, true );
+}
+add_action( 'wp_enqueue_scripts', 'theme_preloader_scripts' );
 
+function theme_customizer_settings( $wp_customize ) {
+    // Add Preloader Section
+    $wp_customize->add_section( 'preloader_section', array(
+        'title'    => __( 'Preloader Settings', 'your-textdomain' ),
+        'priority' => 30,
+    ));
 
-// Register a custom function to handle the form submission
-function handle_contact_form_submission() {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
-        // Sanitize and validate input data
-        $name = sanitize_text_field($_POST['name']);
-        $email = sanitize_email($_POST['email']);
-        $phone = sanitize_text_field($_POST['phone']);
-        $subject = sanitize_text_field($_POST['subject']);
-        $message = sanitize_textarea_field($_POST['message']);
+    // Preloader Logo
+    $wp_customize->add_setting( 'preloader_logo', array(
+        'default'   => '',
+        'transport' => 'refresh',
+    ));
 
-        // Check if the email is valid
-        if (!is_email($email)) {
-            // Handle invalid email error
-            wp_send_json_error(['message' => 'Invalid email address.']);
-            return;
-        }
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'preloader_logo', array(
+        'label'    => __( 'Preloader Logo', 'your-textdomain' ),
+        'section'  => 'preloader_section',
+        'settings' => 'preloader_logo',
+    )));
 
-        // Prepare email content
-        $to = get_option('admin_email');
-        $headers = ['Content-Type: text/html; charset=UTF-8', 'From: ' . $name . ' <' . $email . '>'];
-        $email_subject = !empty($subject) ? $subject : 'New Contact Form Submission';
-        $email_message = "
-            <h2>New Message from $name</h2>
-            <p><strong>Email:</strong> $email</p>
-            <p><strong>Phone:</strong> $phone</p>
-            <p><strong>Message:</strong><br>$message</p>
-        ";
+    // Preloader Slogan
+    $wp_customize->add_setting( 'preloader_slogan', array(
+        'default'   => __( 'Loading...', 'your-textdomain' ),
+        'transport' => 'refresh',
+    ));
 
-        // Send email
-        if (wp_mail($to, $email_subject, $email_message, $headers)) {
-            wp_send_json_success(['message' => 'Your message has been sent successfully.']);
-        } else {
-            wp_send_json_error(['message' => 'There was an error sending your message. Please try again later.']);
-        }
+    $wp_customize->add_control( 'preloader_slogan', array(
+        'label'    => __( 'Preloader Slogan', 'your-textdomain' ),
+        'section'  => 'preloader_section',
+        'type'     => 'text',
+    ));
+
+    // Enable/Disable Preloader
+    $wp_customize->add_setting( 'preloader_enable', array(
+        'default'   => true,
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control( 'preloader_enable', array(
+        'label'    => __( 'Enable Preloader', 'your-textdomain' ),
+        'section'  => 'preloader_section',
+        'type'     => 'checkbox',
+    ));
+}
+add_action( 'customize_register', 'theme_customizer_settings' );
+
+// Add a settings menu item
+function custom_admin_logo_menu() {
+    add_menu_page(
+        'Admin Logo Settings',         // Page title
+        'Admin Settings',                  // Menu title
+        'manage_options',              // Capability
+        'custom-admin-logo',           // Menu slug
+        'custom_admin_logo_page'       // Callback function
+    );
+}
+add_action('admin_menu', 'custom_admin_logo_menu');
+
+// Create the settings page
+function custom_admin_logo_page() {
+    ?>
+    <div class="wrap">
+        <h1>Admin Settings</h1>
+        <form method="post" action="options.php" enctype="multipart/form-data">
+            <?php
+            settings_fields('custom_logo_options'); // Security field
+            do_settings_sections('custom_admin_logo'); // Output settings sections
+            submit_button(); // Submit button
+            ?>
+        </form>
+    </div>
+    <?php
+}
+
+// Register settings
+function custom_admin_logo_settings() {
+    // Register settings for admin logo
+    register_setting('custom_logo_options', 'custom_admin_logo');
+
+    // Register settings for receiver emails
+    register_setting('custom_logo_options', 'receiver_emails');
+
+    add_settings_section(
+        'custom_logo_section',        // ID
+        'Upload Your Admin Logo',    // Title
+        null,                         // Callback
+        'custom_admin_logo'          // Page
+    );
+
+    add_settings_field(
+        'custom_admin_logo',          // ID
+        'Admin Logo',                 // Title
+        'custom_admin_logo_callback', // Callback function
+        'custom_admin_logo',          // Page
+        'custom_logo_section'         // Section
+    );
+
+     // Add field for the receiver emails
+    add_settings_field(
+        'receiver_emails',            // ID
+        'Receiver Emails',            // Title
+        'receiver_emails_callback',   // Callback function
+        'custom_admin_logo',          // Page
+        'custom_logo_section'         // Section
+    );
+}
+add_action('admin_init', 'custom_admin_logo_settings');
+
+// Callback function for the logo upload field
+function custom_admin_logo_callback() {
+    $logo_url = get_option('custom_admin_logo');
+    echo '<input type="hidden" id="custom_admin_logo" name="custom_admin_logo" value="' . esc_attr($logo_url) . '" />';
+    echo '<button type="button" class="button" id="upload_logo_button">Upload Logo</button>';
+    if ($logo_url) {
+        echo '<img src="' . esc_url($logo_url) . '" style="max-width: 150px; display: block; margin-top: 10px;" />';
+        echo '<button type="button" class="button" id="remove_logo_button">Remove Logo</button>';
     }
 }
-// Hook into the init action to handle form submissions
-add_action('wp_ajax_nopriv_handle_contact_form', 'handle_contact_form_submission');
-add_action('wp_ajax_handle_contact_form', 'handle_contact_form_submission');
 
-// Register a custom function to handle the form submission
-function handle_newsletter_form_submission() {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
-        // Sanitize and validate input data
-        $email = sanitize_email($_POST['email']);
-        // Enable / Disable Mailchimp
-        $enable_mailchimp = 'no'; // yes OR no
+// Callback function for the receiver emails textarea
+function receiver_emails_callback() {
+    $emails = get_option('receiver_emails');
+    echo '<textarea id="receiver_emails" name="receiver_emails" rows="5" cols="50">' . esc_textarea($emails) . '</textarea>';
+    echo '<p class="description">Enter the receiver emails, separated by commas.</p>';
+}
 
-        // Email Receiver Address
-        $receiver_email = get_option('admin_email');;
+// Enqueue the media uploader script
+function custom_admin_logo_scripts() {
+    wp_enqueue_media();
+    wp_enqueue_script('custom-admin-logo-script', get_template_directory_uri() . '/js/custom-admin-logo.js', array('jquery'), null, true);
+}
+add_action('admin_enqueue_scripts', 'custom_admin_logo_scripts');
 
-        // Email Receiver Name for SMTP Email
-        $receiver_name 	= get_option('blogname');;
-
-        // Email Subject
-        $subject 	= 'Subscribe Newsletter';
-
-        $email 	= $_POST['email'];
-
-        if( $enable_mailchimp == 'no' ) { // Simple / SMTP Email
-
-            $name 	= $receiver_name;
-
-            $default_logo = get_custom_logo_url('custom_logo');
-            $default_logo = empty($default_logo) ? get_template_directory_uri().'/images/demo-accounting-logo-black.png' : $default_logo;
-
-            $message = '
-            <html>
-            <head>
-            <title>Newsletter email</title>
-            </head>
-            <body>
-            <table width="50%" border="0" align="center" cellpadding="0" cellspacing="0">
-            <tr>
-            <td colspan="2" align="center" valign="top"><img style=" margin-top: 15px; " src="'.$default_logo.'" ></td>
-            </tr>';
-            $message .= '<tr>
-            <td align="left" valign="top" style="border-top:1px solid #dfdfdf; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000; padding:7px 0 7px 5px;">Newsletter subscribe Email: ' . $email . '</td>
-            </tr>
-            </table>
-            </body>
-            </html>
-            ';
-
-            // Send email
-            $headers = ['Content-Type: text/html; charset=UTF-8', 'From: ' . $name . ' <' . $email . '>'];
-            if (wp_mail($receiver_email, $subject, $message, $headers)) {
-                wp_send_json_success(['message' => 'Your message has been sent successfully.']);
-            } else {
-                wp_send_json_error(['message' => 'There was an error sending your message. Please try again later.']);
+// Change the login logo
+function custom_login_logo() {
+    $logo_url = get_option('custom_admin_logo');
+    if ($logo_url) {
+        echo '<style type="text/css">
+            h1 a {
+                background-image: url(' . esc_url($logo_url) . ') !important;
+                background-size: contain !important;
+                width: auto !important;
+                height: 80px !important; /* Set the desired height */
             }
-
-        } else { // Mailchimp
-
-            $api_key 	= 'YOUR_MAILCHIMP_API_KEY'; // Your MailChimp API Key
-            $list_id 	= 'YOUR_MAILCHIMP_LIST_ID'; // Your MailChimp List ID
-            $status 	= 'subscribed';
-            $f_name		= ! empty( $_POST['name'] ) ? $_POST['name'] : substr( $email, 0, strpos( $email,'@' ) );
-
-            $data = array(
-                'apikey'        => $api_key,
-                'email_address' => $email,
-                'status'        => $status,
-                'merge_fields'  => array( 'FNAME' => $f_name )
-            );
-            $mch_api = curl_init(); // initialize cURL connection
-        
-            curl_setopt( $mch_api, CURLOPT_URL, 'https://' . substr( $api_key, strpos( $api_key, '-' ) + 1 ) . '.api.mailchimp.com/3.0/lists/' . $list_id . '/members/' . md5( strtolower( $data['email_address'] ) ) );
-            curl_setopt( $mch_api, CURLOPT_HTTPHEADER, array( 'Content-Type: application/json', 'Authorization: Basic '.base64_encode( 'user:' . $api_key ) ) );
-            curl_setopt( $mch_api, CURLOPT_USERAGENT, 'PHP-MCAPI/2.0' );
-            curl_setopt( $mch_api, CURLOPT_RETURNTRANSFER, true ); // return the API response
-            curl_setopt( $mch_api, CURLOPT_CUSTOMREQUEST, 'PUT' ); // method PUT
-            curl_setopt( $mch_api, CURLOPT_TIMEOUT, 10 );
-            curl_setopt( $mch_api, CURLOPT_POST, true );
-            curl_setopt( $mch_api, CURLOPT_SSL_VERIFYPEER, false );
-            curl_setopt( $mch_api, CURLOPT_POSTFIELDS, json_encode( $data ) ); // send data in json
-        
-            $result	= curl_exec( $mch_api );
-            $result = ! empty( $result ) ? json_decode( $result ) : '';
-
-            if ( ! empty( $result->status ) AND $result->status == 'subscribed' ) {
-                
-                // Redirect to success page
-                $redirect_page_url = ! empty( $_POST['redirect'] ) ? $_POST['redirect'] : '';
-                if( ! empty( $redirect_page_url ) ) {
-                    header( "Location: " . $redirect_page_url );
-                    exit();
-                }
-                wp_send_json_success(['message' => 'Your message has been sent successfully subscribed to our email list!']);
-            } else {
-                wp_send_json_error(['message' => 'Your message could not been sent!']);
-            }
-        }
+        </style>';
     }
 }
-// Hook into the init action to handle form submissions
-add_action('wp_ajax_nopriv_handle_newsletter_form', 'handle_newsletter_form_submission');
-add_action('wp_ajax_handle_newsletter_form', 'handle_newsletter_form_submission');
+add_action('login_enqueue_scripts', 'custom_login_logo');
+
+
+
+// Contact Load inquiry table creation
+require_once get_template_directory() . '/inc/contact-inquiries/table-creation.php';
+
+// Contact Load admin menu and display functionality
+require_once get_template_directory() . '/inc/contact-inquiries/admin-page.php';
+
+// Contact Load form handler for AJAX
+require_once get_template_directory() . '/inc/contact-inquiries/form-handler.php';
+
+
+// Requests Load inquiry table creation
+require_once get_template_directory() . '/inc/request-inquiries/table-creation.php';
+
+// Request Load admin menu and display functionality
+require_once get_template_directory() . '/inc/request-inquiries/admin-page.php';
+
+// Requests Load form handler for AJAX
+require_once get_template_directory() . '/inc/request-inquiries/form-handler.php';

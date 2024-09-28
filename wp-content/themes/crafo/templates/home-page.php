@@ -8,6 +8,17 @@ require_once get_template_directory() . '/templates/common-functions.php';
 
 ?>
 
+<?php if ( get_theme_mod( 'preloader_enable', true ) ) : ?>
+    <div id="preloader">
+        <div class="preloader-content">
+            <img id="preloader-logo" src="<?php echo esc_url( get_theme_mod( 'preloader_logo' ) ); ?>" alt="Company Logo">
+            <p id="preloader-slogan"><?php echo esc_html( get_theme_mod( 'preloader_slogan', 'Loading...' ) ); ?></p>
+            <!-- <div class="preloader-spinner m-auto"></div> -->
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </div>
+<?php endif; ?>
+
 <!-- start banner -->
 <section class="top-space-margin p-0 full-screen md-h-600px sm-h-500px section-dark" data-parallax-background-ratio="0.8" style="background-image: url(<?php echo $banner_image_url ?>)">  
     <div class="container h-100">
@@ -23,7 +34,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
                             <i class="feather icon-feather-arrow-right text-dark-gray icon-extra-medium"></i>
                         </div>
                         <div class="feature-box-content">
-                            <a href="<?php echo home_url(); ?>/services" class="d-inline-block fs-19 text-white text-shadow-double-large">Explore services</a>
+                            <a href="<?php echo home_url(); ?>/process" class="d-inline-block fs-19 text-white text-shadow-double-large">Explore services</a>
                         </div>
                     </div> 
                 </div>
@@ -46,7 +57,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
                     <div class="col-xl-7 col-lg-6 col-sm-7 ps-45px lg-ps-15px last-paragraph-no-margin text-center text-sm-start" data-anime='{  "opacity": [0,1], "delay": 100, "staggervalue": 250, "easing": "easeOutQuad" }'>
                         <h5 class="fw-600 text-dark-gray ls-minus-1px mb-15px"><?php echo get_theme_mod('experience_section_title'); ?></h5>
                         <p><?php echo get_theme_mod('experience_section_description'); ?></p>
-                        <a href="<?php echo home_url(); ?>/process" class="btn btn-link btn-hover-animation-switch btn-extra-large text-base-color text-transform-none fw-600 mt-15px">
+                        <a href="<?php echo home_url(); ?>/process" class="btn btn-link btn-hover-animation-switch btn-extra-large text-kan-blue-color text-transform-none fw-600 mt-15px">
                             <span>
                                 <span class="btn-text">Discover now</span>
                                 <span class="btn-icon"><i class="feather icon-feather-arrow-right"></i></span>
@@ -63,7 +74,8 @@ require_once get_template_directory() . '/templates/common-functions.php';
                 <div class="ps-14 pe-14 pt-12 pb-12 lg-p-12 bg-white box-shadow-quadruple-large border-radius-6px">
                     <h6 class="d-inline-block fw-600 text-dark-gray ls-minus-1px mb-35px sm-mb-25px" data-anime='{ "translateY": [15, 0], "translateX": [-15, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>Request a free advice?</h6>
                     <!-- start contact form -->
-                    <form action="email-templates/contact-form.php" method="post" data-anime='{ "el": "childs", "translateY": [15, 0], "translateX": [-15, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                    <form action="<?php echo admin_url('admin-ajax.php'); ?>" method="post" data-anime='{ "el": "childs", "translateY": [15, 0], "translateX": [-15, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                        <input type="hidden" name="action" value="handle_request_form">
                         <div class="position-relative form-group mb-15px">
                             <span class="form-icon"><i class="bi bi-emoji-smile"></i></span>
                             <input type="text" name="name" class="form-control required" placeholder="Your name*" />
@@ -83,7 +95,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
                             </label>
                         </div>
                         <div class="position-relative mt-20px">
-                            <button class="btn btn-large btn-round-edge btn-theme-blue-base btn-box-shadow submit w-100" type="submit">Get free quote</button>
+                            <button class="btn btn-large btn-round-edge btn-theme-blue btn-box-shadow submit w-100" type="submit">Get free quote</button>
                             <div class="form-results mt-20px text-center lh-24 d-none"></div>
                         </div>
                     </form>
@@ -144,9 +156,9 @@ require_once get_template_directory() . '/templates/common-functions.php';
                                                 </a>
                                                 <div class="mt-auto d-flex w-100 align-items-center">
                                                     <div class="col last-paragraph-no-margin">
-                                                        <a href="<?php echo home_url(); ?>/services" class="text-white fs-24 lh-28 w-65 xl-w-75 d-block"><?php the_title(); ?></a> 
+                                                        <a href="<?php echo home_url(); ?>/process" class="text-white fs-24 lh-28 w-65 xl-w-75 d-block"><?php the_title(); ?></a> 
                                                     </div>
-                                                    <a href="<?php echo home_url(); ?>/services" class="circle-box bg-theme-blue-base w-50px h-50px rounded-circle ms-auto position-relative rounded-box">
+                                                    <a href="<?php echo home_url(); ?>/process" class="circle-box bg-theme-blue w-50px h-50px rounded-circle ms-auto position-relative rounded-box">
                                                         <i class="bi bi-arrow-right-short absolute-middle-center icon-very-medium lh-0px text-white"></i>
                                                     </a>  
                                                 </div>
@@ -173,7 +185,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
 </section>
 <!-- end section -->
 <!-- start section --> 
-<section class="p-0 bg-theme-blue-base">
+<section class="p-0 bg-theme-blue">
     <div class="container">
         <div class="row align-items-center justify-content-center g-0">
             <div class="col-auto d-flex align-items-center" data-anime='{ "translateY": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'>
@@ -292,7 +304,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
                                 }
                     ?>
 
-                    <li class="nav-item"><a data-bs-toggle="tab" href="#tab_eight<?php echo get_the_ID() ?>" class="nav-link <?php echo esc_attr($is_active); ?>"><?php echo esc_html(get_the_title()); ?><span class="tab-border bg-theme-blue-base"></span></a></li>
+                    <li class="nav-item"><a data-bs-toggle="tab" href="#tab_eight<?php echo get_the_ID() ?>" class="nav-link <?php echo esc_attr($is_active); ?>"><?php echo esc_html(get_the_title()); ?><span class="tab-border bg-theme-blue"></span></a></li>
 
                     <?php
                      $counter++;
@@ -358,7 +370,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
                                     </div>
                                     <h4 class="fw-700 text-dark-gray ls-minus-1px md-mb-20px"><?php echo esc_html(get_the_content()); ?></h4>
                                     <p class="mb-35px md-mb-25px"><?php echo esc_html($companyservice_description); ?></p> 
-                                    <a href="<?php echo $companyservice_url ?>" class="btn btn-large btn-rounded with-rounded btn-white btn-box-shadow fw-600">Learn more<span class="bg-theme-blue-base text-white"><i class="bi bi-arrow-right-short icon-extra-medium"></i></span></a>
+                                    <a href="<?php echo $companyservice_url ?>" class="btn btn-large btn-rounded with-rounded btn-white btn-box-shadow fw-600">Learn more<span class="bg-theme-blue text-white"><i class="bi bi-arrow-right-short icon-extra-medium"></i></span></a>
                                 </div>
                             </div>
                         </div>
@@ -459,7 +471,7 @@ require_once get_template_directory() . '/templates/common-functions.php';
 </section>
 <!-- end section -->
 <!-- start section -->
-<section class="bg-very-light-gray pb-0">
+<section class="bg-very-light-gray pb-0 pt-3">
     <div class="container">    
         <div class="row justify-content-center mb-2">
             <div class="col-xxl-5 col-lg-7 col-md-8 text-center" data-anime='{ "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'>

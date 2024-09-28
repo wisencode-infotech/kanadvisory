@@ -2125,9 +2125,13 @@
                 url: actionURL,
                 data: formObj.serialize(),
                 beforeSend: function() {
+                    // Add preloader animation
+                    form_submit_btn.append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
                     form_submit_btn.prop('disabled', true);
                 },
                 success: function (result) {
+                    // Remove spinner animation
+                    form_submit_btn.find('.spinner-border').remove();
                     form_submit_btn.prop('disabled', false);
                     _this.removeClass('loading');
                     if (redirectVal != '' && redirectVal != undefined) {

@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- style sheets and font icons  -->
-    <title><?php wp_title(); ?></title>
+    <title><?php echo !empty(get_the_title('')) ? get_the_title('') . ' - ' : '' ?>  <?php echo esc_html(get_bloginfo('name')); ?></title>
     <?php wp_head(); ?>
 </head>
 
@@ -28,17 +28,15 @@
 
 ?>
 
-<body data-mobile-nav-style="classic" class="custom-cursor">
-
+<body data-mobile-nav-trigger-alignment="right" data-mobile-nav-style="modern" data-mobile-nav-bg-color="#076c9a">
 
 <!-- Your header HTML -->
  <!-- start cursor -->
- <div class="cursor-page-inner">
+<div class="cursor-page-inner">
     <div class="circle-cursor circle-cursor-inner"></div>
     <div class="circle-cursor circle-cursor-outer"></div>
 </div>
 <!-- end cursor -->
-
 
 <!-- start header --> 
 <header class="header-with-topbar">
@@ -80,6 +78,19 @@
                     <span class="navbar-toggler-line"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav"> 
+
+                   
+
+                <div class="mobile-nav-logo text-center d-lg-none mobile-logo-top-center">
+                    <a class="navbar-brand" href="<?php echo home_url(); ?>">
+                        <img src="<?php echo $mobile_logo; ?>" data-at2x="<?php echo $mobile_logo; ?>" alt="Mobile Logo" >
+                         <!-- <p class="mobile-slogan mt-8 mb-4"><?php echo get_theme_mod('preloader_slogan'); ?></p> -->
+                    </a>
+                </div>
+                <div class="mobile-nav-logo text-center d-lg-none mobile-slogan-top-center">
+                    <p class="mobile-slogan mt-8 mb-4"><?php echo get_theme_mod('preloader_slogan'); ?></p>
+                </div>
+
                 <?php
                     if (has_nav_menu('crafo-header-menu')) {
                         wp_nav_menu(array(
