@@ -28,7 +28,7 @@
 
 ?>
 
-<body data-mobile-nav-trigger-alignment="right" data-mobile-nav-style="modern" data-mobile-nav-bg-color="#076c9a">
+<body data-mobile-nav-trigger-alignment="right" data-mobile-nav-style="modern" data-mobile-nav-bg-color="#0197da">
 
 <!-- Your header HTML -->
  <!-- start cursor -->

@@ -19526,6 +19526,7 @@ body.loaded #preloader {
       position: fixed;
       top: 20px;
       z-index: 99999;
+      width: 100%;
     }
 
     /* Center logo and slogan horizontally */
