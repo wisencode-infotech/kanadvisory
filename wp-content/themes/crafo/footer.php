@@ -102,7 +102,7 @@
             <div class="col-6 col-lg-3 col-sm-6 xs-mb-30px order-sm-5 order-lg-4">
                 <span class="fs-18 fw-400 d-block text-dark-gray mb-5px">Get in touch</span>
                 <?php if (get_theme_mod('support_email')) : ?>
-                    <p class="mb-5px">Ndeed support?</p>
+                    <p class="mb-5px">Need support?</p>
                     <a href="mailto:<?php echo get_theme_mod('support_email'); ?>" class="text-dark-gray lh-16 d-block mb-15px"><?php echo get_theme_mod('support_email'); ?></a>
                 <?php endif; ?>
                 
