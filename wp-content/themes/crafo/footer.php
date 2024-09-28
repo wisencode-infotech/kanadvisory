@@ -143,7 +143,7 @@
     <!-- end footer -->
     <!-- start sticky -->
     <div class="sticky-wrap d-none d-lg-inline-block" data-animation-delay="100" data-shadow-animation="true">
-        <span class="fs-16"><i class="bi bi-envelope icon-small me-10px"></i>Get our service — <a href="mailto:info@domain.com" class="text-decoration-line-bottom fw-500">Send a message</a></span>
+        <span class="fs-16"><i class="bi bi-envelope icon-small me-10px"></i>Get our service — <a href="mailto:info@domain.com" class="text-decoration-line-bottom fw-500">Send a message </a></span>
     </div>
     <!-- end sticky -->
         <!-- start scroll progress -->
