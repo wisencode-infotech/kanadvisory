@@ -13,7 +13,6 @@ require_once get_template_directory() . '/templates/common-functions.php';
         <div class="preloader-content">
             <img id="preloader-logo" src="<?php echo esc_url( get_theme_mod( 'preloader_logo' ) ); ?>" alt="Company Logo">
             <p id="preloader-slogan"><?php echo esc_html( get_theme_mod( 'preloader_slogan', 'Loading...' ) ); ?></p>
-            <!-- <div class="preloader-spinner m-auto"></div> -->
             <div class="progress-bar" id="progress-bar"></div>
         </div>
     </div>

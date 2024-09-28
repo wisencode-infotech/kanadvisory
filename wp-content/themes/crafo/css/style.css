@@ -19476,6 +19476,8 @@ footer .footer-navbar .nav-item:last-child a {
 #preloader-slogan {
   font-size: 18px;
   margin-bottom: 20px;
+  min-width: 350px;
+  max-width: 350px;
 }
 
 /* Progress Bar */
@@ -19517,29 +19519,18 @@ body.loaded #preloader {
     }
 }
 
- /* Ensure the mobile logo is positioned in the top right inside the mobile nav */
-.mobile-nav-logo {
-    position: relative;
-}
-
-
-.mobile-logo-top-center {
-    position: fixed;
-    top: 40px;
-    left: 50%;  /* Center horizontally */
-    transform: translateX(-50%);  /* Shift the logo back by 50% of its width to center */
-    width: 180px;  /* Adjust the width as per your needs */
-    z-index: 1000;  /* Ensures the logo stays above other content */
-}
-
 @media (max-width: 991px) {
+
+    /* Ensure the mobile logo is positioned in the top right inside the mobile nav */
+    .mobile-nav-logo {
+      position: fixed;
+      top: 20px;
+      z-index: 99999;
+    }
+
     /* Center logo and slogan horizontally */
-    .mobile-logo-top-center,
-    .mobile-slogan-top-center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column; /* Stack content vertically */
+    .mobile-logo-top-center {
+        background-color: var(--white);
         width: 100%; /* Take full width */
     }
 
@@ -19552,14 +19543,21 @@ body.loaded #preloader {
 
     /* Slogan styling */
     .mobile-slogan {
-        font-size: 16px;
-        color: #ffffff;
-        margin-top: 10px;
-        text-align: center;
-        position: fixed;
-        top: 70px; /* Adjust as needed based on your logo height */
-        left: 50%; /* Center horizontally */
-        transform: translateX(-50%); /* Offset the left position */
+      font-size: 15px;
+      color: #ffffff;
+      padding-top: 10px;
+      text-align: center;
+      margin-bottom: 0px;
+      line-height: 25px;
+    }
+
+    #menu-crafo-header-menu {
+      padding: 0px 20px;
+    }
+
+    .mobile-logo-container {
+      width: 100%;
+      background-color: var(--white);
     }
 }
 

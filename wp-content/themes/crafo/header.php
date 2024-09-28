@@ -79,16 +79,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav"> 
 
-                   
-
-                <div class="mobile-nav-logo text-center d-lg-none mobile-logo-top-center">
-                    <a class="navbar-brand" href="<?php echo home_url(); ?>">
-                        <img src="<?php echo $mobile_logo; ?>" data-at2x="<?php echo $mobile_logo; ?>" alt="Mobile Logo" >
-                         <!-- <p class="mobile-slogan mt-8 mb-4"><?php echo get_theme_mod('preloader_slogan'); ?></p> -->
+                <div class="mobile-nav-logo text-center d-lg-none">
+                    <a class="navbar-brand mobile-logo-top-center" href="<?php echo home_url(); ?>">
+                        <div class="mobile-logo-container">
+                            <img src="<?php echo $mobile_logo; ?>" data-at2x="<?php echo $mobile_logo; ?>" alt="Mobile Logo" >
+                        </div>
                     </a>
-                </div>
-                <div class="mobile-nav-logo text-center d-lg-none mobile-slogan-top-center">
-                    <p class="mobile-slogan mt-8 mb-4"><?php echo get_theme_mod('preloader_slogan'); ?></p>
+                    <p class="mobile-slogan"><?php echo get_theme_mod('preloader_slogan'); ?></p>
                 </div>
 
                 <?php

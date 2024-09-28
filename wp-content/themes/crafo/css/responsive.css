@@ -19459,7 +19459,7 @@
   }
   [data-mobile-nav-style=modern] .navbar-modern-inner .mCSB_inside > .mCSB_container {
     margin-right: 0;
-    padding: 0 20px;
+    padding: 0 0px;
   }
   [data-mobile-nav-style=modern] .navbar-modern-inner .navbar-nav .dropdown.dropdown-with-icon-style02 .dropdown-menu {
     padding-top: 10px !important;
@@ -20223,7 +20223,7 @@
   /* Header modern inner  */
   .navbar-modern-inner .navbar-nav {
     padding: 15px 15px 15px;
-    margin-top: 4em;
+    /* margin-top: 4em; */
   }
   .hamburger-menu-simple .menu-item-list {
     width: 100%;
