@@ -89,7 +89,19 @@
                 </div>
 
                 <?php
-                    if (has_nav_menu('crafo-header-menu')) {
+                    $is_mobile = wp_is_mobile();
+
+                    if($is_mobile && has_nav_menu('mobile-header-menu')){
+                        wp_nav_menu(array(
+                            'theme_location' => 'mobile-header-menu',  // Registered menu name
+                            'menu_class'     => 'navbar-nav fw-600',  // Add your custom class
+                            'container'      => false,                // Remove the wrapping container
+                            'walker'         => new Crafo_Custom_Nav_Walker(),  // Use the custom walker
+                            'fallback_cb'    => false,                // No fallback
+                        ));
+                    } 
+                    
+                    if(!$is_mobile && has_nav_menu('crafo-header-menu')){
                         wp_nav_menu(array(
                             'theme_location' => 'crafo-header-menu',  // Registered menu name
                             'menu_class'     => 'navbar-nav fw-600',  // Add your custom class
@@ -97,7 +109,7 @@
                             'walker'         => new Crafo_Custom_Nav_Walker(),  // Use the custom walker
                             'fallback_cb'    => false,                // No fallback
                         ));
-                    }
+                    } 
                 ?>
                 </div>
             </div>

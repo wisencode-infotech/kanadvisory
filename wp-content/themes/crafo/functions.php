@@ -13,6 +13,7 @@ function crafto_theme_setup() {
         'footer-menu-about' => __('Footer Menu About'),
         'footer-menu-services' => __('Footer Menu Services'),
         'footer-bottom-links' => __('Footer Bottom Links'),
+        'mobile-header-menu' => __('Mobile Header Menu'),
     ));
 }
 add_action('after_setup_theme', 'crafto_theme_setup');
